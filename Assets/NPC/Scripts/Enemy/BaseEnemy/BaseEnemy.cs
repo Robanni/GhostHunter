@@ -22,7 +22,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     {
         _currentHealth -= amount;
 
-        
+         
 
         if (_currentHealth < 0) _currentHealth = 0;
 
@@ -38,9 +38,10 @@ public class BaseEnemy : MonoBehaviour, IDamageable
 
     protected void Die()
     {
-        Destroy(this.gameObject);
-        _isDead = true;
         PlayerCharacteristics.Instance.AddMoney(_money);
+        _isDead = true;
+
+        Destroy(this.gameObject);
     }
 
     public bool IsDead()

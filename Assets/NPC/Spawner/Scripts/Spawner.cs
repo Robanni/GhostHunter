@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Spawner : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Spawner : MonoBehaviour
         {
             if (_enemyList.Count < _maxUnitsOnSpot) 
             {
+                _enemyList.RemoveAll(item => item == null);
                 _unitToSpawn.transform.position = new Vector3(transform.position.x + Random.Range(-3,+3), _unitToSpawn.transform.position.y,
                                                               transform.position.z + Random.Range(-3, +3));
 

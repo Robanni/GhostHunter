@@ -56,7 +56,7 @@ public class BaseEnemyAttack : MonoBehaviour
             }
 
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSeconds(1);
         }
     }
 

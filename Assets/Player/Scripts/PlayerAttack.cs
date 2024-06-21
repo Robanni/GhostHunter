@@ -14,6 +14,8 @@ public class PlayerAttack : MonoBehaviour
     private List<IDamageable> _enemies;
     private List<Transform> _targets;
 
+    [SerializeField] private Transform _lazerStartTransform;
+
 
 
 
@@ -80,7 +82,7 @@ public class PlayerAttack : MonoBehaviour
             }
 
 
-            yield return new WaitForSecondsRealtime(1);
+            yield return new WaitForSeconds(1);
         }
     }
 
@@ -121,7 +123,7 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (var enemy in _targets)
         {
-            _lineRenderer.SetPosition(index, transform.position);
+            _lineRenderer.SetPosition(index, _lazerStartTransform.position);
             _lineRenderer.SetPosition(index + 1, enemy.position);
             index += 2;
         }

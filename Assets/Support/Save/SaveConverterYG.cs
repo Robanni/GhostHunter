@@ -18,6 +18,6 @@ public class SaveConverterYG : MonoBehaviour
         return false;
     }
 
-    [DllImport("__Internal")]
-    private static extern void ShowDeathAdv();
+    //[DllImport("__Internal")]
+    //private static extern void ShowDeathAdv();
 }

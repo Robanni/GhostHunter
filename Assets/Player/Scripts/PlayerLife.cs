@@ -33,6 +33,19 @@ public class PlayerLife : MonoBehaviour,IDamageable
             Die();
         }
     }
+    public void RegenerateHealth(float amount)
+    {
+        if (amount <= 0 ) return;
+        if ((amount + _currentHealth) >= _maxHealth)
+        { 
+            _currentHealth = _maxHealth; 
+            onCurrentHealthChanged?.Invoke(_currentHealth); 
+            return; 
+        }
+
+        _currentHealth += amount;
+        onCurrentHealthChanged?.Invoke(_currentHealth);
+    }
 
 
 

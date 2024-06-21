@@ -46,5 +46,6 @@ public class CharacteristicsMenuHandler : MonoBehaviour
     {
         _active = !_active;
         gameObject.SetActive(_active);
+        if(_active) { Time.timeScale = 0; } else { Time.timeScale = 1; }
     }
 }

@@ -5,8 +5,9 @@ using UnityEngine;
 
 public class BaseEnemy : MonoBehaviour, IDamageable
 {
-    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _maxHealth = 10f;
     [SerializeField] private int _money = 5;
+    [SerializeField] private int _exp = 1;
     private bool _isDead = false;
 
     protected float _currentHealth;
@@ -39,6 +40,7 @@ public class BaseEnemy : MonoBehaviour, IDamageable
     protected void Die()
     {
         PlayerCharacteristics.Instance.AddMoney(_money);
+        PlayerCharacteristics.Instance.AddPlayerExp(_exp);
         _isDead = true;
 
         Destroy(this.gameObject);

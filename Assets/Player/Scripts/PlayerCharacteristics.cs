@@ -25,6 +25,8 @@ public class PlayerCharacteristics : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _attackRadius = 5f;
     [SerializeField] private int _money = 0;
+    [SerializeField] private int _playerLvl = 0;
+    [SerializeField] private int _playerCurrentExp = 0;
 
 
     private Dictionary<string, int> _characteristicsLvl = new Dictionary<string, int>()
@@ -32,18 +34,23 @@ public class PlayerCharacteristics : MonoBehaviour
         { "Speed",1},
         {"Damage",1 },
         {"Health",1 },
-        {"AttackRadius",1 }
+        {"AttackRadius",1 },
+        {"PlayerLvl", 0 }
     };
 
 
     public event Action onCharacteristicChanged;
     public event Action onMoneyChanged;
+    public event Action<int> onPlayerLvlChanged;
 
     public float GetMaxHealth() { return _maxHealth; }
     public float GetDamage() { return _damage; }
     public float GetSpeed() { return _speed; }
     public float GetAttackRadius() {  return _attackRadius; }
     public int GetMoney() { return _money; }
+    public int GetLevel() { return _playerLvl; }
+    public int GetPlayerCurrentExp() { return _playerCurrentExp; }
+    public void AddPlayerExp(int amount) { if (amount >= 0) { _playerCurrentExp += amount; TryToLevelUp(); } }
     public void AddMoney(int m) { if (_money <= 0) return; _money += m; onMoneyChanged?.Invoke(); }
     public void RemoveMoney(int money)
     {
@@ -82,5 +89,15 @@ public class PlayerCharacteristics : MonoBehaviour
 
         onCharacteristicChanged?.Invoke();
     }
+    private void TryToLevelUp()
+    {
+        if(_playerCurrentExp >= (3 + _playerLvl*10))
+        {
+            _playerLvl++;
+            _playerCurrentExp -= (3 + _playerLvl * 10);
+            _characteristicsLvl["PlayerLvl"] = _playerLvl;
 
+            onPlayerLvlChanged?.Invoke(_playerLvl);
+        }
+    }
 }

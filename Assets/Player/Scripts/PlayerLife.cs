@@ -11,6 +11,7 @@ public class PlayerLife : MonoBehaviour,IDamageable
 
     protected float _currentHealth;
 
+    public event Action<float> onCurrentHealthChanged;
     private void Start()
     {
         _maxHealth = PlayerCharacteristics.Instance.GetMaxHealth();
@@ -48,7 +49,6 @@ public class PlayerLife : MonoBehaviour,IDamageable
     }
 
 
-
     protected void Die()
     {
         Destroy(this.gameObject);
@@ -65,5 +65,5 @@ public class PlayerLife : MonoBehaviour,IDamageable
         _maxHealth = PlayerCharacteristics.Instance.GetMaxHealth();
     }
 
-    public event Action<float> onCurrentHealthChanged;
+
 }

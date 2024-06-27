@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,23 @@ public class BaseEnemyAI : MonoBehaviour
     [SerializeField] private float _speed = 1f;
     [SerializeField] private float _detectionRadius = 10f;
     [SerializeField] private Transform _enemyTransform;
+    [SerializeField, Range(-1, 1)] private int _friendlyType = 1;//if 1 then enemy will try to attack, else run away
     private Transform _target;
     private bool _isPlayerInRange = false;
 
     private Vector3 _moveDirection = new Vector3(0,0,0);
 
-    [SerializeField]private float _timeOfChanging = 3;
+    [SerializeField] private float _timeOfChanging = 3;
     private float _timerOfChangingDirection = 0;
 
-    void Start()
+    private void OnValidate()
+    {
+        if (_friendlyType == 0)
+        {
+            _friendlyType = -1; 
+        }
+    }
+    private void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -25,13 +34,13 @@ public class BaseEnemyAI : MonoBehaviour
         collider.radius = _detectionRadius;
     }
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         if (_isPlayerInRange)
         {
 
             if (_target.Equals(null)) return;
-            MoveTowardsPlayer();
+            EnemyMovementType();
 
             return;
         }
@@ -39,19 +48,27 @@ public class BaseEnemyAI : MonoBehaviour
         RandomMovement();
     }
 
-    private void MoveTowardsPlayer()
+    protected virtual void EnemyMovementType()
     {
         Vector3 direction = (_target.position - _enemyTransform.position).normalized;
+        direction.y = 0;
 
-        _enemyTransform.position += direction * _speed * Time.deltaTime;
+        _enemyTransform.position += direction * _speed * Time.deltaTime * _friendlyType;
 
-        _enemyTransform.LookAt(new Vector3(_target.position.x,transform.position.y,_target.position.z));
+        Vector3 directionToTarget = _target.position - _enemyTransform.position;
+        Vector3 lookAtPosition;
+
+        if (_friendlyType == -1)
+        {
+            Vector3 directionAwayFromTarget = -directionToTarget;
+            lookAtPosition = _enemyTransform.position + new Vector3(directionAwayFromTarget.x, 0, directionAwayFromTarget.z);
+        }else lookAtPosition = _enemyTransform.position + new Vector3(directionToTarget.x, 0, directionToTarget.z);
+
+        _enemyTransform.LookAt(lookAtPosition);
     }
-
     private void RandomMovement()
     {
         _timerOfChangingDirection += Time.deltaTime;
-
 
         if (_timerOfChangingDirection > _timeOfChanging)
         {

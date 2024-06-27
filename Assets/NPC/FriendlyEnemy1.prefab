@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1253839249}
   - component: {fileID: 1253839248}
   - component: {fileID: 1253839247}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StatsCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,8 +28,8 @@ RectTransform:
   m_GameObject: {fileID: 1253839245}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.034959, y: 0.004784138, z: 0.1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: -0.02, y: -0.0027369992, z: -0.057209875}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1285545881}
   m_Father: {fileID: 5614643336828652690}
@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 1.426}
+  m_AnchoredPosition: {x: 0, y: 0.873}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &1253839249
@@ -112,7 +112,7 @@ GameObject:
   - component: {fileID: 1285545881}
   - component: {fileID: 1285545883}
   - component: {fileID: 1285545882}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - component: {fileID: 1591223194}
   - component: {fileID: 1591223193}
   - component: {fileID: 1591223192}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: HealthBarFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -278,13 +278,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5614643336828652690}
-  - component: {fileID: 5614643336828652691}
-  - component: {fileID: 5614643336828652688}
+  - component: {fileID: 5667051430375571929}
+  - component: {fileID: 8098634316332293653}
   - component: {fileID: 5614643336828652689}
   - component: {fileID: 5614643336828652693}
   - component: {fileID: -327648875127161933}
-  m_Layer: 0
-  m_Name: TestEnemy
+  m_Layer: 7
+  m_Name: FriendlyEnemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,9 +298,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5614643336828652686}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.8, y: 0.5, z: -7.64}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -1.7893, y: 1.6, z: -6.3082}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5614643338364650610}
   - {fileID: 4469301240600576337}
@@ -308,15 +308,15 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &5614643336828652691
+--- !u!33 &5667051430375571929
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5614643336828652686}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &5614643336828652688
+  m_Mesh: {fileID: 1848924527908158099, guid: 5a924e9cc221b014da48d2e585ab678a, type: 3}
+--- !u!23 &8098634316332293653
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -336,7 +336,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 82d0f731d4aa30f4594e80ad71874717, type: 2}
+  - {fileID: 2100000, guid: 64616fc7368be4842b241b03bcf77228, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -412,7 +412,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5614643338364650610}
   - component: {fileID: 5614643338364650613}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyMove
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,6 +449,7 @@ MonoBehaviour:
   _speed: 1
   _detectionRadius: 10
   _enemyTransform: {fileID: 5614643336828652690}
+  _friendlyType: -1
   _timeOfChanging: 3
 --- !u!1 &6733674042378498359
 GameObject:
@@ -461,7 +462,7 @@ GameObject:
   - component: {fileID: 4469301240600576337}
   - component: {fileID: 4372081658679417741}
   - component: {fileID: 3238841511210617897}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: EnemyAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -495,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b4d220a77005144688a93de677982f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _damage: 0.5
+  _damage: 0
 --- !u!135 &3238841511210617897
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -507,5 +508,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 2.08
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}

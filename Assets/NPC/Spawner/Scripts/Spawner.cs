@@ -24,9 +24,9 @@ public class Spawner : MonoBehaviour
         {
             if (_enemyList.Count < _maxUnitsOnSpot) 
             {
-                _enemyList.RemoveAll(item => item == null);
-                _unitToSpawn.transform.position = new Vector3(transform.position.x + Random.Range(-3,+3), _unitToSpawn.transform.position.y,
-                                                              transform.position.z + Random.Range(-3, +3));
+                _enemyList.RemoveAll(item => item.IsDead());
+                _unitToSpawn.transform.position = new Vector3(transform.position.x + Random.Range(-1,+1), _unitToSpawn.transform.position.y,
+                                                              transform.position.z + Random.Range(-1, +1));
 
                 _enemyList.Add(Instantiate(_unitToSpawn));
             }

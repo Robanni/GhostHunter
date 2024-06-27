@@ -35,8 +35,6 @@ public class BaseEnemy : MonoBehaviour, IDamageable
         }
     }
 
-
-
     protected void Die()
     {
         PlayerCharacteristics.Instance.AddMoney(_money);

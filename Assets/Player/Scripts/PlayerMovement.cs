@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private SimpleTouchController _touchController;
     [SerializeField] private PlayerLife _playerLife;
     
+    
     private float _movementSpeed;
     private CharacterController _characterController;
     private Vector3 _moveDiraction;

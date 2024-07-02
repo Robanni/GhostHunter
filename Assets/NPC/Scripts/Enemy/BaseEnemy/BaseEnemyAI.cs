@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class BaseEnemyAI : MonoBehaviour
 {
     [SerializeField] private float _speed = 1f;
-    [SerializeField] private float _detectionRadius = 10f;
     [SerializeField] private Transform _enemyTransform;
     [SerializeField, Range(-1, 1)] private int _friendlyType = 1;//if 1 then enemy will try to attack, else run away
     private Transform _target;
@@ -29,9 +28,8 @@ public class BaseEnemyAI : MonoBehaviour
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
 
-        SphereCollider collider = gameObject.AddComponent<SphereCollider>();
-        collider.isTrigger = true;
-        collider.radius = _detectionRadius;
+        SphereCollider collider = gameObject.GetComponent<SphereCollider>();
+
     }
 
     private void FixedUpdate()
